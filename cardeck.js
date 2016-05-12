@@ -11,23 +11,27 @@
 var Cardeck = {
 	suits: [
 		{
-			name: "heart",
-			color: "red"
+			name: "Heart",
+			color: "Red",
+			symbol: "♥"
 		},
 
 		{
-			name: "diamond",
-			color: "red"
+			name: "Diamond",
+			color: "Red",
+			symbol: "♦"
 		},
 
 		{
-			name: "club",
-			color: "black"
+			name: "Club",
+			color: "Black",
+			symbol: "♣"
 		},
 
 		{
-			name: "spade",
-			color: "black"
+			name: "Spade",
+			color: "Black",
+			symbol: "♠"
 		}
 	],
 
@@ -121,7 +125,6 @@ Card.prototype.getName = function() {
 	return Cardeck.values[this.value].name;
 }
 
-
 Card.prototype.getCode = function() {
 	return Cardeck.values[this.value].code;
 }
@@ -130,8 +133,16 @@ Card.prototype.getSuit = function() {
 	return Cardeck.suits[this.suit].name;
 }
 
+Card.prototype.getSuitSymbol = function() {
+	return Cardeck.suits[this.suit].symbol;
+}
+
 Card.prototype.getColor = function() {
 	return Cardeck.suits[this.suit].color;
+}
+
+Card.prototype.getID = function() {
+	return this.getCode()+this.getSuitSymbol();
 }
 
 Card.prototype.isIdentical = function(card) {
