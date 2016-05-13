@@ -198,7 +198,7 @@ Deck.prototype.getRandomCard = function (value, suit) {
 }
 
 Deck.prototype.removeCard = function (card) {
-	if(card instanceof Card == false) return false;
+	if(card instanceof Card === false) return false;
 	this.cards = this.cards.filter(function(deckCard) {
 		return !deckCard.isIdentical(card);
 	});
