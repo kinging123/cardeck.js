@@ -29,7 +29,7 @@ myCoolCard.getName(); // e.g. "King"
 ```
 
 **You can also create cards with specific properties:**
-```
+```javascript
 var ace = new Card("A"); // Creates an Ace with a random suite
 var seven = new Card(7); // Creates a seven with a random suite
 var king = new Card(12); // Creates a king with a random suite
