@@ -1,0 +1,22 @@
+{
+  "name": "cardeck.js",
+  "version": "1.0.2",
+  "description": "A small (3kb) library for manipulating a deck of cards, to help developers creating card games",
+  "main": "cardeck.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kinging123/cardeck.js.git"
+  },
+  "keywords": [
+    "cards"
+  ],
+  "author": "Reuven Karasik <rubik@karasik.org> (http://reuven.rocks)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kinging123/cardeck.js/issues"
+  },
+  "homepage": "https://github.com/kinging123/cardeck.js#readme"
+}
