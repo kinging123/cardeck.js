@@ -101,7 +101,13 @@ var Cardeck = {
 			name: "King",
 			code: "K"
 		}
-	]
+	],
+
+	// Suits CONSTANTS:
+	HEART: 0,
+	DIAMOND: 1,
+	CLUB: 2,
+	SPADE: 3
 };
 
 function Card(value, suit) {
