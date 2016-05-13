@@ -1,6 +1,20 @@
 # cardeck.js
 A small (3kb) library for manipulating a deck of cards, to help developers creating card games
 
+[![npm version](https://badge.fury.io/js/cardeck.js.svg)](https://badge.fury.io/js/cardeck.js)
+
+# How to install it?
+Using [npm](www.npmjs.com):
+`npm install cardeck.js`
+
+Using files:
+
+Download the [source file](https://raw.githubusercontent.com/kinging123/cardeck.js/master/cardeck.js) or the [minified source file](https://raw.githubusercontent.com/kinging123/cardeck.js/master/cardeck.min.js) to your project's folder, and include it inside your HTML file:
+
+```html
+<script type="text/javascript" src="path_to_cardeck/cardeck.min.js"></script>
+```
+
 # How to use it?
 
 ### The `Card` Class
@@ -8,7 +22,7 @@ The library provides you with a nice class (constructor function, to be exact) c
 
 ####Basic usage:
 
-```
+```javascript
 var myCoolCard = new Card // Creates a random card
 
 myCoolCard.getName(); // e.g. "King"
@@ -29,7 +43,7 @@ var spadesQueen = new Card("Q", Cardeck.SPADE); // Creates a Spades Queen
 
 ####All Getters:
 
-```
+```javascript
 var card = new Card("K", Cardeck.HEART);
 
 card.getName(); // e.g. "King"
@@ -51,7 +65,7 @@ The `Deck` class is provided for manipulating a whole deck.
 
 ####Basic Usage:
 
-```
+```javascript
 var deck = new Deck();
 
 deck.takeRandomCard().getID(); // e.g. "K♥"
@@ -59,7 +73,7 @@ deck.takeRandomCard().getID(); // e.g. "K♥"
 
 ####All methods:
 
-```
+```javascript
 deck = new Deck(); // Generates a new deck with all 52 cards.
 
 
@@ -86,7 +100,7 @@ Here's a pro tip: you can customize every little thing in this library by changi
 
 Example:
 
-```
+```javascript
 Cardeck.suits.push({
   "name": "Asterisk",
   "color": "Orange",
