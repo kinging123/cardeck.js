@@ -4,10 +4,12 @@ A small (3kb) library for manipulating a deck of cards, to help developers creat
 [![npm version](https://badge.fury.io/js/cardeck.js.svg)](https://badge.fury.io/js/cardeck.js)
 
 # How to install it?
-Using [npm](www.npmjs.com):
+*Using [npm](https://www.npmjs.com/package/cardeck.js):*
+
 `npm install cardeck.js`
 
-Using files:
+
+*Using files:*
 
 Download the [source file](https://raw.githubusercontent.com/kinging123/cardeck.js/master/cardeck.js) or the [minified source file](https://raw.githubusercontent.com/kinging123/cardeck.js/master/cardeck.min.js) to your project's folder, and include it inside your HTML file:
 
@@ -23,7 +25,7 @@ The library provides you with a nice class (constructor function, to be exact) c
 ####Basic usage:
 
 ```javascript
-var myCoolCard = new Card // Creates a random card
+var myCoolCard = new Card(); // Creates a random card
 
 myCoolCard.getName(); // e.g. "King"
 ```
