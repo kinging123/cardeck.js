@@ -8,7 +8,7 @@
  */
 
 // Define defaults. Play with it, it's fun!
-var Cardeck = {
+const Cardeck = {
 	suits: [
 		{
 			name: "Heart",
@@ -36,7 +36,7 @@ var Cardeck = {
 	],
 
 	values: [
-		{},
+		{empty: true},
 		{
 			name: "Ace",
 			code: "A"
@@ -110,117 +110,116 @@ var Cardeck = {
 	SPADE: 3
 };
 
-function Card(value, suit) {
-	if(typeof value === 'undefined') return new Deck().getRandomCard(false, suit);
+class Card {
+	constructor(value, suit) {
+		if(typeof value === 'undefined') return new Deck().getRandomCard(false, suit);
 
-	if(typeof value === 'number') this.value = value;
-	else {
-		for (var i = Cardeck.values.length - 1; i >= 1; i--) {
-			if(Cardeck.values[i].code == value)this.value = i;
+		if(typeof value === 'number') this.value = value;
+		else {
+			this.value = Cardeck.values.findIndex(i=>i.code==value);
+		}
+
+		if(typeof suit === 'undefined') this.suit = Math.floor(Math.random()*Cardeck.suits.length);
+		else this.suit = suit;
+	}
+
+	getName() {
+		return Cardeck.values[this.value].name;
+	}
+
+	getCode() {
+		return Cardeck.values[this.value].code;
+	}
+
+	getSuit() {
+		return Cardeck.suits[this.suit].name;
+	}
+
+	getSuitSymbol() {
+		return Cardeck.suits[this.suit].symbol;
+	}
+
+	getColor() {
+		return Cardeck.suits[this.suit].color;
+	}
+
+	getID() {
+		return this.getCode()+this.getSuitSymbol();
+	}
+
+	isIdentical(card) {
+		return this.value == card.value && this.suit == card.suit;
+	}
+
+
+}
+
+
+
+
+class Deck {
+	constructor() {
+		this.cards = [];
+
+		for (let value of Cardeck.values) {
+			for(let suit of Cardeck.suits) {
+				value.empty || this.cards.push(new Card(value.code, Cardeck[suit.name.toUpperCase()]))
+			}
 		}
 	}
 
-	if(typeof suit === 'undefined') this.suit = Math.floor(Math.random()*4);
-	else this.suit = suit;
+	getCard(id) {
+		return this.cards[id];
+	};
 
-
-}
-
-
-Card.prototype.getName = function() {
-	return Cardeck.values[this.value].name;
-}
-
-Card.prototype.getCode = function() {
-	return Cardeck.values[this.value].code;
-}
-
-Card.prototype.getSuit = function() {
-	return Cardeck.suits[this.suit].name;
-}
-
-Card.prototype.getSuitSymbol = function() {
-	return Cardeck.suits[this.suit].symbol;
-}
-
-Card.prototype.getColor = function() {
-	return Cardeck.suits[this.suit].color;
-}
-
-Card.prototype.getID = function() {
-	return this.getCode()+this.getSuitSymbol();
-}
-
-Card.prototype.isIdentical = function(card) {
-	return this.value == card.value && this.suit == card.suit;
-}
-
-
-
-
-
-function Deck() {
-	this.cards = [];
-
-	for (var value = 1; value < Cardeck.values.length; value++) {
-		for (var suit = 0; suit < Cardeck.suits.length; suit++) {
-			this.cards.push(new Card(value, suit));
-		}
-	}
-
-}
-
-Deck.prototype.getCard = function(id) {
-	return this.cards[id];
-};
-
-Deck.prototype.getRandomCard = function (value, suit) {
-	if(typeof value !== 'number' && typeof suit !== 'number')
+	getRandomCard(value, suit) {
+		if(typeof value !== 'number' && typeof suit !== 'number')
 		return this.getCard(Math.floor(Math.random()*this.cards.length));
-	else {
-		var tempDeck = [];
-		var finalDeck = [];
-		if(typeof value === 'number') {
-			for (var i = 0; i < this.cards.length; i++) {
-				if(this.cards[i].value==value)tempDeck.push(this.cards[i]);
-			}
-		} else tempDeck = this.cards;
+		else {
+			let tempDeck = [],
+				finalDeck = [];
+			if(typeof value === 'number') {
+				for (let card of this.cards) {
+					if(card.value==value)tempDeck.push(card);
+				}
+			} else tempDeck = this.cards;
 
-		if(typeof suit === 'number') {
-			for (var i = 0; i < tempDeck.length; i++) {
-				if(tempDeck[i].suit==suit)finalDeck.push(tempDeck[i]);
-			}
-		} else finalDeck = tempDeck;
+			if(typeof suit === 'number') {
+				for (let i = 0; i < tempDeck.length; i++) {
+					if(tempDeck[i].suit==suit)finalDeck.push(tempDeck[i]);
+				}
+			} else finalDeck = tempDeck;
 
-		if(finalDeck.length == 1)return finalDeck[0];
-		else throw new Error("More than one card matched query.");
+			if(finalDeck.length == 1)return finalDeck[0];
+			else throw new Error("More than one card matched query.");
+		}
 	}
-}
 
-Deck.prototype.removeCard = function (card) {
-	if(card instanceof Card === false) return false;
-	this.cards = this.cards.filter(function(deckCard) {
-		return !deckCard.isIdentical(card);
-	});
-}
+	removeCard(card) {
+		if(card instanceof Card === false) return false;
+		this.cards = this.cards.filter( deckCard => !deckCard.isIdentical(card) );
+	}
 
-Deck.prototype.takeNextCard = Deck.prototype.draw = function () {
-	var card = this.cards[this.cards.length-1];
-	this.removeCard(card);
-	return card;
-}
+	draw() {
+		var card = this.cards[this.cards.length-1];
+		this.removeCard(card);
+		return card;
+	}
+	takeNextCard() {return this.draw();}
 
-Deck.prototype.takeRandomCard = Deck.prototype.drawRandom = function (value, suit) {
-	var card = this.getRandomCard(value, suit);
-	this.removeCard(card);
-	return card;
-}
+	drawRandom(value, suit) {
+		var card = this.getRandomCard(value, suit);
+		this.removeCard(card);
+		return card;
+	}
+	takeRandomCard(value, suit) {return this.drawRandom(value, suit);}
 
-Deck.prototype.addCard = function(card) {
-	if(card instanceof Card) this.cards.push(card);
-	else return false;
-}
+	addCard(card) {
+		if(card instanceof Card) this.cards.push(card);
+		else return false;
+	}
 
-Deck.prototype.reset = function () {
-	this.cards = new Deck().cards;
+	reset() {
+		this.cards = new Deck().cards;
+	}
 }

@@ -1,5 +1,5 @@
 # cardeck.js
-A small (3kb) library for manipulating a deck of cards, to help developers creating card games
+A small (3kb) library for manipulating a deck of cards, to help developers creating awesome card games and impress the ladies.
 
 [![npm version](https://badge.fury.io/js/cardeck.js.svg)](https://badge.fury.io/js/cardeck.js)
 
@@ -93,7 +93,7 @@ deck.takeRandomCard(); /* or */ deck.drawRandom(); // Returns a random from the 
 
 deck.addCard( new Card("J", Cardeck.DIAMOND) ); // Adds a diamond Jack to the deck. Warning: be careful when adding cards to the deck as it might cause unwanted duplicates.
 
-deck.reset(); // Resets the deck to it's original 52 cards.
+deck.reset(); // Resets the deck to its original 52 cards.
 ```
 
 
