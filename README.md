@@ -22,7 +22,7 @@ Download the [source file](https://raw.githubusercontent.com/kinging123/cardeck.
 ### The `Card` Class
 The library provides you with a nice class (constructor function, to be exact) called `Card`.
 
-####Basic usage:
+#### Basic usage:
 
 ```javascript
 var myCoolCard = new Card(); // Creates a random card
@@ -43,7 +43,7 @@ var spadesQueen = new Card("Q", Cardeck.SPADE); // Creates a Spades Queen
 
 > All suited are referenced inside the `Cardeck` object. You can use the constants `Cardeck.HEART`, `Cardeck.DIAMOND`, `Cardeck.CLUB`, `Cardeck.SPADE` to reference a specific suite.
 
-####All Getters:
+#### All Getters:
 
 ```javascript
 var card = new Card("K", Cardeck.HEART);
@@ -65,7 +65,7 @@ card3.isIdentical(card); // e.g. true
 ### The `Deck` Class
 The `Deck` class is provided for manipulating a whole deck.
 
-####Basic Usage:
+#### Basic Usage:
 
 ```javascript
 var deck = new Deck();
@@ -73,7 +73,7 @@ var deck = new Deck();
 deck.takeRandomCard().getID(); // e.g. "K♥"
 ```
 
-####All methods:
+#### All methods:
 
 ```javascript
 deck = new Deck(); // Generates a new deck with all 52 cards.
